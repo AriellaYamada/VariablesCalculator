@@ -75,22 +75,34 @@ function calculateVariables(file) {
 
         var data = $.csv.toObjects(csv);
 
-        var size = data.length;
+        for (var row in data) {
+            var nchave = data[row]['Chave'];
+            console.log(nchave + "\n");
+            //MEEM
+            var nmeem = Number(data[row]['B2']) + Number(data[row]['B3']) + Number(data[row]['B4']) + Number(data[row]['B5']) +
+                Number(data[row]['B6']) + Number(data[row]['B7']) + Number(data[row]['B8']) + Number(data[row]['B9']) +
+                Number(data[row]['B10']) + Number(data[row]['B11']) + Number(data[row]['B12a']) + Number(data[row]['B12b']) +
+                Number(data[row]['B12c']) + Number(data[row]['B13a']) + Number(data[row]['B13b']) + Number(data[row]['B13c']) +
+                Number(data[row]['B13d']) + Number(data[row]['B13e']) + Number(data[row]['B14a']) + Number(data[row]['B14b']) +
+                Number(data[row]['B14c']) + Number(data[row]['B15']) + Number(data[row]['B16']) + Number(data[row]['b17']) +
+                Number(data[row]['B18a']) + Number(data[row]['B18b']) + Number(data[row]['B18c']) + Number(data[row]['B19']) +
+                Number(data[row]['B20']) + Number(data[row]['B21']);
+            console.log(nmeem);
+            //Atividade Fisica - Verificar os campos
+            /*var naftotal = (Number(data[row]['C34b']) * Number(data[row]['C34c'])) +
+                (Number(data[row]['C34d']) * Number(data[row]['C34e']))
+                (Number(data[row]['C36']) * Number(data[row]['C36a'])) +
+                (Number(data[row]['C36b']) * Number(data[row]['C36c'])) +
+                (Number(data[row]['C36d']) * Number(data[row]['C36e']));
+            console.log(naftotal);*/
+            //GDS
+            var ngds = Number(data[row]['C14a']) + Number(data[row]['C14b']) + Number(data[row]['C14c']) +
+                Number(data[row]['C14d']) + Number(data[row]['C14e']) + Number(data[row]['C14f']) +
+                Number(data[row]['C14g']) + Number(data[row]['C14h']) + Number(data[row]['C14i']) +
+                Number(data[row]['C14j']) + Number(data[row]['C14k']) + Number(data[row]['C14l']) +
+                Number(data[row]['C14m']) + Number(data[row]['C14n']) + Number(data[row]['C14o']);
 
-        var cont = 0;
-
-        for (var i = 0; i < size; i++) {
-            var chave = data[i]['Chave'];
-            console.log(chave + "\n");
-            var meem = Number(data[i]['B2']) + Number(data[i]['B3']) + Number(data[i]['B4']) + Number(data[i]['B5']) +
-                Number(data[i]['B6']) + Number(data[i]['B7']) + Number(data[i]['B8']) + Number(data[i]['B9']) +
-                Number(data[i]['B10']) + Number(data[i]['B11']) + Number(data[i]['B12a']) + Number(data[i]['B12b']) +
-                Number(data[i]['B12c']) + Number(data[i]['B13a']) + Number(data[i]['B13b']) + Number(data[i]['B13c']) +
-                Number(data[i]['B13d']) + Number(data[i]['B13e']) + Number(data[i]['B14a']) + Number(data[i]['B14b']) +
-                Number(data[i]['B14c']) + Number(data[i]['B15']) + Number(data[i]['B16']) + Number(data[i]['b17']) +
-                Number(data[i]['B18a']) + Number(data[i]['B18b']) + Number(data[i]['B18c']) + Number(data[i]['B19']) +
-                Number(data[i]['B20']) + Number(data[i]['B21']);
-            console.log(meem);
+            console.log(ngds);
 
            /* var meem =
             atividadeFisica: ,
