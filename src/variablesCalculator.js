@@ -4,6 +4,7 @@ $(document).ready(function() {
     }
 });
 
+
 function isAPIAvailable() {
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -72,12 +73,16 @@ function calculateVariables(file) {
     reader.readAsText(file);
     reader.onload = function(event){
         var csv = event.target.result;
-
         var data = $.csv.toObjects(csv);
-
+        var html = '<tr>\r\n<td>Chave</td>\r\n<td>MEEM</td>\r\n<td>Atividade Física</td>\r\n' +
+            '<td>Tempo Sentado</td>\r\n<td>GDS</td>\r\n<td>FES</td>\r\n<td>MAN</td>\r\n<td>Fraqueza Muscular</td>\r\n' +
+            '<td>Lawton</td>\r\n<td>Katz</td>\r\n<td>CAAVD</td>\r\n<td>TUG</td>\r\n<td>Caminhada</td>\r\n<td>MOS</td>\r\n' +
+            '<td>Circunferência</td>\r\n<td>BERG</td>\r\n<td>Idade</td>\r\n<td>Relógio</td>\r\n<td>Quedas</td>\r\n<td>Resultado</td>';
         for (var row in data) {
+            html += '<tr>\r\n';
             var nchave = data[row]['Chave'];
-            console.log(nchave + "\n");
+            html += '<td>' + nchave + '</td>\r\n';
+
             //MEEM
             var nmeem = Number(data[row]['B2']) + Number(data[row]['B3']) + Number(data[row]['B4']) + Number(data[row]['B5']) +
                 Number(data[row]['B6']) + Number(data[row]['B7']) + Number(data[row]['B8']) + Number(data[row]['B9']) +
@@ -87,44 +92,42 @@ function calculateVariables(file) {
                 Number(data[row]['B14c']) + Number(data[row]['B15']) + Number(data[row]['B16']) + Number(data[row]['b17']) +
                 Number(data[row]['B18a']) + Number(data[row]['B18b']) + Number(data[row]['B18c']) + Number(data[row]['B19']) +
                 Number(data[row]['B20']) + Number(data[row]['B21']);
-            console.log(nmeem);
+            html += '<td>' + nmeem + '</td>\r\n';
             //Atividade Fisica - Verificar os campos
-            /*var naftotal = (Number(data[row]['C34b']) * Number(data[row]['C34c'])) +
-                (Number(data[row]['C34d']) * Number(data[row]['C34e']))
-                (Number(data[row]['C36']) * Number(data[row]['C36a'])) +
-                (Number(data[row]['C36b']) * Number(data[row]['C36c'])) +
-                (Number(data[row]['C36d']) * Number(data[row]['C36e']));
-            console.log(naftotal);*/
+            var naftotal =
+            /*AF transporte*/
+                (Number(data[row]['C34b']) * (Number(data[row]['C34c1']) * 60 + Number(data[row]['C34c2']))) +
+                (Number(data[row]['C34d']) * (Number(data[row]['C34e1']) * 60 + Number(data[row]['C34e2']))) +
+                    /*AF lazer*/
+                (Number(data[row]['C36']) * (Number(data[row]['C36a1']) * 60 + Number(data[row]['C36a2']))) +
+                (Number(data[row]['C36b']) * (Number(data[row]['C36c1']) * 60 + Number(data[row]['C36c2']))) +
+                (Number(data[row]['C36d']) * (Number(data[row]['C36e1']) * 60 + Number(data[row]['C36e2'])));
+            html += '<td>' + naftotal + '</td>\r\n';
+
+            //Tempo sentado
+            var ntsentado = (Number(data[row]['C371']) * 60 + Number(data[row]['C372']) +
+                Number(data[row]['C381']) * 60 + Number(data[row]['C382'])) / 2;
+            html += '<td>' + ntsentado + '</td>\r\n';
             //GDS
             var ngds = Number(data[row]['C14a']) + Number(data[row]['C14b']) + Number(data[row]['C14c']) +
                 Number(data[row]['C14d']) + Number(data[row]['C14e']) + Number(data[row]['C14f']) +
                 Number(data[row]['C14g']) + Number(data[row]['C14h']) + Number(data[row]['C14i']) +
                 Number(data[row]['C14j']) + Number(data[row]['C14k']) + Number(data[row]['C14l']) +
                 Number(data[row]['C14m']) + Number(data[row]['C14n']) + Number(data[row]['C14o']);
+            html += '<td>' + ngds + '</td>\r\n';
 
-            console.log(ngds);
+            var nfes = 0;
+            for(var aux = 1; aux < 17; aux++) {
+                var field = "C25f" + aux;
+                nfes += Number(data[row][field]);
+            }
+            html += '<td>' + nfes + '</td>\r\n';
 
-           /* var meem =
-            atividadeFisica: ,
-            tempoSentado: ,
-            gds:,
-            fes:,
-            man:,
-            fraquezaMuscular:,
-            lawton:,
-            katz:,
-            caavd:,
-            tug:,
-            caminhada:,
-            mos:,
-            circunferencia:,
-            berg:,
-            idade:,
-            relogio:,
-            quedas:
-            results[cont] = {};
-*/
+            html += '</tr>\r\n';
+
         }
+
+        $('#results').html(html);
     };
 
 }
