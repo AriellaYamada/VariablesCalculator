@@ -95,10 +95,10 @@ function calculateVariables(file) {
             html += '<td>' + nmeem + '</td>\r\n';
             //Atividade Fisica - Verificar os campos
             var naftotal =
-            /*AF transporte*/
+                /*AF transporte*/
                 (Number(data[row]['C34b']) * (Number(data[row]['C34c1']) * 60 + Number(data[row]['C34c2']))) +
                 (Number(data[row]['C34d']) * (Number(data[row]['C34e1']) * 60 + Number(data[row]['C34e2']))) +
-                    /*AF lazer*/
+                /*AF lazer*/
                 (Number(data[row]['C36']) * (Number(data[row]['C36a1']) * 60 + Number(data[row]['C36a2']))) +
                 (Number(data[row]['C36b']) * (Number(data[row]['C36c1']) * 60 + Number(data[row]['C36c2']))) +
                 (Number(data[row]['C36d']) * (Number(data[row]['C36e1']) * 60 + Number(data[row]['C36e2'])));
@@ -108,6 +108,7 @@ function calculateVariables(file) {
             var ntsentado = (Number(data[row]['C371']) * 60 + Number(data[row]['C372']) +
                 Number(data[row]['C381']) * 60 + Number(data[row]['C382'])) / 2;
             html += '<td>' + ntsentado + '</td>\r\n';
+
             //GDS
             var ngds = Number(data[row]['C14a']) + Number(data[row]['C14b']) + Number(data[row]['C14c']) +
                 Number(data[row]['C14d']) + Number(data[row]['C14e']) + Number(data[row]['C14f']) +
@@ -116,12 +117,57 @@ function calculateVariables(file) {
                 Number(data[row]['C14m']) + Number(data[row]['C14n']) + Number(data[row]['C14o']);
             html += '<td>' + ngds + '</td>\r\n';
 
+            //FES
             var nfes = 0;
             for(var aux = 1; aux < 17; aux++) {
                 var field = "C25f" + aux;
                 nfes += Number(data[row][field]);
             }
             html += '<td>' + nfes + '</td>\r\n';
+
+            //MAN
+            var a;
+            if(Number(data[row]['C23a']) == 1){
+                if(Number(data[row]['C23b']) >= 3)
+                    a = 0;
+                else if(Number(data[row]['C23b']) >= 1 && Number(data[row]['C23b']) < 3)
+                    a = 2;
+            } else if(Number(data[row]['C23a']) == 98 || Number(data[row]['C23a']) == 99)
+                a = 1;
+            var b = Number(data[row]['I8']) / Number(data[row]['I5']);
+            var nman = Number(data[row]['C39']) + a + Number(data[row]['C40']) +
+                Number(data[row]['C41']) + Number(data[row]['C42']) + b;
+            html += '<td>' + nman + '</td>\r\n';
+
+            //Fraqueza Muscular
+            var nfrqmuscular;
+            html += '<td> fraqueza muscular</td>\r\n';
+
+            //Lawton
+            var nlawton = 0;
+            for(var aux = 14; aux < 21; aux++) {
+                var field = "D" + aux;
+                nlawton += 3 - Number(data[row][field]);
+            }
+            html += '<td>' + nlawton + '</td>\r\n';
+
+            //KATZ
+            var nkatz = 0;
+            for(var aux = 22; aux < 28; aux++) {
+                var field = "D" + aux;
+                if(Number(data[row][field]) != 0)
+                    nkatz += 1;
+            }
+            html += '<td>' + nkatz + '</td>\r\n';
+
+            //CAAVD
+            var ncaavd = 0;
+            for (var aux = 2; aux < 14; aux++) {
+                var field = "D" + aux;
+                ncaavd += Number(data[row][field]);
+            }
+            html += '<td>' + ncaavd + '</td>\r\n';
+
 
             html += '</tr>\r\n';
 
