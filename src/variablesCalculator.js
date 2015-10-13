@@ -77,7 +77,8 @@ function calculateVariables(file) {
         var html = '<tr>\r\n<td>Chave</td>\r\n<td>MEEM</td>\r\n<td>Atividade Física</td>\r\n' +
             '<td>Tempo Sentado</td>\r\n<td>GDS</td>\r\n<td>FES</td>\r\n<td>MAN</td>\r\n<td>Fraqueza Muscular</td>\r\n' +
             '<td>Lawton</td>\r\n<td>Katz</td>\r\n<td>CAAVD</td>\r\n<td>TUG</td>\r\n<td>Caminhada</td>\r\n<td>MOS</td>\r\n' +
-            '<td>Circunferência</td>\r\n<td>BERG</td>\r\n<td>Idade</td>\r\n<td>Relógio</td>\r\n<td>Quedas</td>\r\n<td>Resultado</td>';
+            '<td>Circunferência - 14</td>\r\n<td>Circunferência - 15</td>\r\n<td>Circunferência - 16</td>\r\n<td>Circunferência - 17</td>\r\n' +
+            '<td>BERG</td>\r\n<td>Idade</td>\r\n<td>Relógio</td>\r\n<td>Quedas</td>\r\n<td>Findrisc</td>\r\n<td>Scored</td>';
         for (var row in data) {
             html += '<tr>\r\n';
             var nchave = data[row]['Chave'];
@@ -134,14 +135,14 @@ function calculateVariables(file) {
                     a = 2;
             } else if(Number(data[row]['C23a']) == 98 || Number(data[row]['C23a']) == 99)
                 a = 1;
-            var b = Number(data[row]['I8']) / Number(data[row]['I5']);
+            var imc = Number(data[row]['I8']) / Number(data[row]['I5']);
             var nman = Number(data[row]['C39']) + a + Number(data[row]['C40']) +
-                Number(data[row]['C41']) + Number(data[row]['C42']) + b;
+                Number(data[row]['C41']) + Number(data[row]['C42']) + imc;
             html += '<td>' + nman + '</td>\r\n';
 
             //Fraqueza Muscular
-            var nfrqmuscular;
-            html += '<td> fraqueza muscular</td>\r\n';
+            var nmkfg = (Number(data[row]['I4a2']) + Number(data[row]['I4b2']) + Number(data[row]['I4c2']))/3;
+            html += '<td>' + nmkfg + '</td>\r\n';
 
             //Lawton
             var nlawton = 0;
@@ -168,6 +169,124 @@ function calculateVariables(file) {
             }
             html += '<td>' + ncaavd + '</td>\r\n';
 
+            //TUG
+            var ntug = Number(data[row]['I12d']);
+            html += '<td>' + ntug + '</td>\r\n';
+
+            //Caminhada
+            var ncaminhada = (Number(data[row]['I12a']) + Number(data[row]['I12b']) + Number(data[row]['I12c']))/3;
+            html += '<td>' + ncaminhada + '</td>\r\n';
+
+            //MOS
+            var nmos = 0;
+            for (var aux = 'a'; aux < 't'; aux++) {
+                var field = 'E1' + aux;
+                nmos += Number(data[row][field]);
+            }
+            html += '<td>' + nmos + '</td>\r\n';
+
+            //Circunferencia
+            var c14 = Number(data[row]['I7a']);
+            html += '<td>' + c14 + '</td>\r\n';
+            var c15 = Number(data[row]['I7b']);
+            html += '<td>' + c15 + '</td>\r\n';
+            var c16 = Number(data[row]['I6']);
+            html += '<td>' + c16 + '</td>\r\n';
+            var c17 = Number(data[row]['I7']);
+            html += '<td>' + c17 + '</td>\r\n';
+
+            //BERG
+            var nberg = Number(data[row]['I13t']);
+            html += '<td>' + nberg + '</td>\r\n';
+
+            //Idade
+            var nidade = Number(data[row]['A1b']);
+            html += '<td>' + nidade + '</td>\r\n';
+
+            //Relogio
+            var nrelogio = Number(data[row]['B1']);
+            html += '<td>' + nrelogio + '</td>\r\n';
+
+            //Quedas
+            var nquedas = Number(data[row]['C25a']);
+            html += '<td>' + nquedas + '</td>\r\n';
+
+            //Findrisc
+            var nfindrisc = 0;
+                //1 - Idade
+            if (nidade >= 60 && nidade <= 64)
+                nfindrisc += 3;
+            else nfindrisc +=4;
+                //2 - IMC
+            if (imc >= 25 && imc <= 30)
+                nfindrisc += 1;
+            else if (nfindrisc > 30)
+                nfindrisc += 3;
+                //3 - Circunferencia
+            if(Number(data[row]['Sexo']) == 0){
+                if(c16 >= 94 && c16 <= 102)
+                    nfindrisc += 3;
+                else if(c16 > 102)
+                    nfindrisc += 4;
+            } else {
+                if (c16 >= 80 && c16 <= 88)
+                    nfindrisc += 3;
+                else if (c16 > 88)
+                    nfindrisc += 4;
+            }
+                //4
+            if (Number(data[row]['C38a']) == 2)
+                nfindrisc += 2;
+                //5
+            if (Number(data[row]['C47']) == 0)
+                nfindrisc += 2;
+                //6
+            if (Number(data[row]['F13']) == 1)
+                nfindrisc += 2;
+                //7
+            if (Number(data[row]['C10']) == 1)
+                nfindrisc += 2;
+                //8
+            if (Number(data[row]['C10b']) == 1)
+                nfindrisc += 3;
+            else if (Number(data[row]['C10b']) == 2)
+                nfindrisc += 5;
+
+            html += '<td>' + nfindrisc + '</td>\r\n';
+
+            //Scored
+            var nscored = 0;
+
+                //1 - Idade
+            if (nidade >= 60 && nidade <= 69)
+               nscored += 3;
+            else if (nidade >= 70)
+                nscored += 4;
+                //2 - Sexo
+            nscored += Number(data[row]['Sexo']);
+                //3
+            if (Number(data[row]['C11']) != 98 && Number(data[row]['C11']) != 99)
+                nscored++;
+                //4
+            if (Number(data[row]['C7']) != 98 && Number(data[row]['C7']) != 99)
+                nscored++;
+                //5
+            if (Number(data[row]['C10']) != 98 && Number(data[row]['C10']) != 99)
+                nscored++;
+                //6
+            if (Number(data[row]['C6']) != 98 && Number(data[row]['C6']) != 99)
+                nscored++;
+                //7
+            if (Number(data[row]['C6a']) != 98 && Number(data[row]['C6a']) != 99)
+                nscored++;
+                //8
+            if (Number(data[row]['C6b']) != 98 && Number(data[row]['C6b']) != 99)
+                nscored++;
+                //9
+            if (Number(data[row]['C7c']) != 98 && Number(data[row]['C7c']) != 99)
+                nscored++;
+
+            html += '<td>' + nscored + '</td>\r\n';
 
             html += '</tr>\r\n';
 
