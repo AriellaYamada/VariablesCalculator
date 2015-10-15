@@ -1,3 +1,7 @@
+var text = "";
+var header = "Chave,MEEM,Atividade Fisica Total,Tempo Sentado,GDS,FES,MAN,Fraqueza Muscular,LAWTON,KATZ,CAAVD,TUG,CAMINHADA," +
+    "MOS,Circunferencia 14,15,16,17,BERG,IDADE,RELOGIO,QUEDAS,FINDRISC,SCORED\n";
+
 $(document).ready(function() {
     if(isAPIAvailable()) {
         $('#files').bind('change', handleFileSelect);
@@ -28,6 +32,10 @@ function isAPIAvailable() {
     }
 }
 
+function exportToCsv() {
+    window.open('data:text/csv;charset=utf-8,' + escape(header + text));
+}
+
 function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
     var file = files[0];
@@ -51,14 +59,14 @@ function handleFileSelect(evt) {
 function printTable(file) {
     var reader = new FileReader();
     reader.readAsText(file);
-    reader.onload = function(event){
+    reader.onload = function (event) {
         var csv = event.target.result;
         //Leitura do CSV
         var data = $.csv.toArrays(csv);
         var html = '';
-        for(var row in data) {
+        for (var row in data) {
             html += '<tr>\r\n';
-            for(var item in data[row]) {
+            for (var item in data[row]) {
                 html += '<td>' + data[row][item] + '</td>\r\n';
             }
             html += '</tr>\r\n';
@@ -79,9 +87,11 @@ function calculateVariables(file) {
             '<td>Lawton</td>\r\n<td>Katz</td>\r\n<td>CAAVD</td>\r\n<td>TUG</td>\r\n<td>Caminhada</td>\r\n<td>MOS</td>\r\n' +
             '<td>Circunferência - 14</td>\r\n<td>Circunferência - 15</td>\r\n<td>Circunferência - 16</td>\r\n<td>Circunferência - 17</td>\r\n' +
             '<td>BERG</td>\r\n<td>Idade</td>\r\n<td>Relógio</td>\r\n<td>Quedas</td>\r\n<td>Findrisc</td>\r\n<td>Scored</td>';
+
         for (var row in data) {
             html += '<tr>\r\n';
             var nchave = data[row]['Chave'];
+            text += nchave + ",";
             html += '<td>' + nchave + '</td>\r\n';
 
             //MEEM
@@ -93,6 +103,7 @@ function calculateVariables(file) {
                 Number(data[row]['B14c']) + Number(data[row]['B15']) + Number(data[row]['B16']) + Number(data[row]['b17']) +
                 Number(data[row]['B18a']) + Number(data[row]['B18b']) + Number(data[row]['B18c']) + Number(data[row]['B19']) +
                 Number(data[row]['B20']) + Number(data[row]['B21']);
+            text += nmeem + ",";
             html += '<td>' + nmeem + '</td>\r\n';
             //Atividade Fisica - Verificar os campos
             var naftotal =
@@ -103,11 +114,13 @@ function calculateVariables(file) {
                 (Number(data[row]['C36']) * (Number(data[row]['C36a1']) * 60 + Number(data[row]['C36a2']))) +
                 (Number(data[row]['C36b']) * (Number(data[row]['C36c1']) * 60 + Number(data[row]['C36c2']))) +
                 (Number(data[row]['C36d']) * (Number(data[row]['C36e1']) * 60 + Number(data[row]['C36e2'])));
+            text += naftotal + ",";
             html += '<td>' + naftotal + '</td>\r\n';
 
             //Tempo sentado
             var ntsentado = (Number(data[row]['C371']) * 60 + Number(data[row]['C372']) +
                 Number(data[row]['C381']) * 60 + Number(data[row]['C382'])) / 2;
+            text += ntsentado + ",";
             html += '<td>' + ntsentado + '</td>\r\n';
 
             //GDS
@@ -116,6 +129,7 @@ function calculateVariables(file) {
                 Number(data[row]['C14g']) + Number(data[row]['C14h']) + Number(data[row]['C14i']) +
                 Number(data[row]['C14j']) + Number(data[row]['C14k']) + Number(data[row]['C14l']) +
                 Number(data[row]['C14m']) + Number(data[row]['C14n']) + Number(data[row]['C14o']);
+            text += ngds + ",";
             html += '<td>' + ngds + '</td>\r\n';
 
             //FES
@@ -124,6 +138,7 @@ function calculateVariables(file) {
                 var field = "C25f" + aux;
                 nfes += Number(data[row][field]);
             }
+            text += nfes + ",";
             html += '<td>' + nfes + '</td>\r\n';
 
             //MAN
@@ -138,10 +153,12 @@ function calculateVariables(file) {
             var imc = Number(data[row]['I8']) / Number(data[row]['I5']);
             var nman = Number(data[row]['C39']) + a + Number(data[row]['C40']) +
                 Number(data[row]['C41']) + Number(data[row]['C42']) + imc;
+            text += nman + ",";
             html += '<td>' + nman + '</td>\r\n';
 
             //Fraqueza Muscular
             var nmkfg = (Number(data[row]['I4a2']) + Number(data[row]['I4b2']) + Number(data[row]['I4c2']))/3;
+            text += nmkfg + ",";
             html += '<td>' + nmkfg + '</td>\r\n';
 
             //Lawton
@@ -150,6 +167,7 @@ function calculateVariables(file) {
                 var field = "D" + aux;
                 nlawton += 3 - Number(data[row][field]);
             }
+            text += nlawton + ",";
             html += '<td>' + nlawton + '</td>\r\n';
 
             //KATZ
@@ -159,6 +177,7 @@ function calculateVariables(file) {
                 if(Number(data[row][field]) != 0)
                     nkatz += 1;
             }
+            text += nkatz + ",";
             html += '<td>' + nkatz + '</td>\r\n';
 
             //CAAVD
@@ -167,14 +186,17 @@ function calculateVariables(file) {
                 var field = "D" + aux;
                 ncaavd += Number(data[row][field]);
             }
+            text += ncaavd + ",";
             html += '<td>' + ncaavd + '</td>\r\n';
 
             //TUG
             var ntug = Number(data[row]['I12d']);
+            text += ntug + ",";
             html += '<td>' + ntug + '</td>\r\n';
 
             //Caminhada
             var ncaminhada = (Number(data[row]['I12a']) + Number(data[row]['I12b']) + Number(data[row]['I12c']))/3;
+            text += ncaminhada + ",";
             html += '<td>' + ncaminhada + '</td>\r\n';
 
             //MOS
@@ -183,32 +205,41 @@ function calculateVariables(file) {
                 var field = 'E1' + aux;
                 nmos += Number(data[row][field]);
             }
+            text += nmos + ",";
             html += '<td>' + nmos + '</td>\r\n';
 
             //Circunferencia
-            var c14 = Number(data[row]['I7a']);
-            html += '<td>' + c14 + '</td>\r\n';
-            var c15 = Number(data[row]['I7b']);
-            html += '<td>' + c15 + '</td>\r\n';
-            var c16 = Number(data[row]['I6']);
-            html += '<td>' + c16 + '</td>\r\n';
-            var c17 = Number(data[row]['I7']);
-            html += '<td>' + c17 + '</td>\r\n';
+            var nc14 = Number(data[row]['I7a']);
+            text += nc14 + ",";
+            html += '<td>' + nc14 + '</td>\r\n';
+            var nc15 = Number(data[row]['I7b']);
+            text += nc15 + ",";
+            html += '<td>' + nc15 + '</td>\r\n';
+            var nc16 = Number(data[row]['I6']);
+            text += nc16 + ",";
+            html += '<td>' + nc16 + '</td>\r\n';
+            var nc17 = Number(data[row]['I7']);
+            text += nc17 + ",";
+            html += '<td>' + nc17 + '</td>\r\n';
 
             //BERG
             var nberg = Number(data[row]['I13t']);
+            text += nberg + ",";
             html += '<td>' + nberg + '</td>\r\n';
 
             //Idade
             var nidade = Number(data[row]['A1b']);
+            text += nidade + ",";
             html += '<td>' + nidade + '</td>\r\n';
 
             //Relogio
             var nrelogio = Number(data[row]['B1']);
+            text += nrelogio + ",";
             html += '<td>' + nrelogio + '</td>\r\n';
 
             //Quedas
             var nquedas = Number(data[row]['C25a']);
+            text += nquedas + ",";
             html += '<td>' + nquedas + '</td>\r\n';
 
             //Findrisc
@@ -224,14 +255,14 @@ function calculateVariables(file) {
                 nfindrisc += 3;
                 //3 - Circunferencia
             if(Number(data[row]['Sexo']) == 0){
-                if(c16 >= 94 && c16 <= 102)
+                if(nc16 >= 94 && nc16 <= 102)
                     nfindrisc += 3;
-                else if(c16 > 102)
+                else if(nc16 > 102)
                     nfindrisc += 4;
             } else {
-                if (c16 >= 80 && c16 <= 88)
+                if (nc16 >= 80 && nc16 <= 88)
                     nfindrisc += 3;
-                else if (c16 > 88)
+                else if (nc16 > 88)
                     nfindrisc += 4;
             }
                 //4
@@ -252,6 +283,7 @@ function calculateVariables(file) {
             else if (Number(data[row]['C10b']) == 2)
                 nfindrisc += 5;
 
+            text += nfindrisc + ",";
             html += '<td>' + nfindrisc + '</td>\r\n';
 
             //Scored
@@ -286,12 +318,12 @@ function calculateVariables(file) {
             if (Number(data[row]['C7c']) != 98 && Number(data[row]['C7c']) != 99)
                 nscored++;
 
+            text += nscored + "\n";
             html += '<td>' + nscored + '</td>\r\n';
 
             html += '</tr>\r\n';
 
         }
-
         $('#results').html(html);
     };
 
