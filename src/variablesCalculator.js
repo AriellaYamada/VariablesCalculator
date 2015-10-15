@@ -153,13 +153,13 @@ function calculateVariables(file) {
             var imc = Number(data[row]['I8']) / Number(data[row]['I5']);
             var nman = Number(data[row]['C39']) + a + Number(data[row]['C40']) +
                 Number(data[row]['C41']) + Number(data[row]['C42']) + imc;
-            text += nman + ",";
-            html += '<td>' + nman + '</td>\r\n';
+            text += nman.toFixed(2) + ",";
+            html += '<td>' + nman.toFixed(2) + '</td>\r\n';
 
             //Fraqueza Muscular
             var nmkfg = (Number(data[row]['I4a2']) + Number(data[row]['I4b2']) + Number(data[row]['I4c2']))/3;
-            text += nmkfg + ",";
-            html += '<td>' + nmkfg + '</td>\r\n';
+            text += nmkfg.toFixed(2) + ",";
+            html += '<td>' + nmkfg.toFixed(2) + '</td>\r\n';
 
             //Lawton
             var nlawton = 0;
@@ -196,8 +196,8 @@ function calculateVariables(file) {
 
             //Caminhada
             var ncaminhada = (Number(data[row]['I12a']) + Number(data[row]['I12b']) + Number(data[row]['I12c']))/3;
-            text += ncaminhada + ",";
-            html += '<td>' + ncaminhada + '</td>\r\n';
+            text += ncaminhada.toFixed(2) + ",";
+            html += '<td>' + ncaminhada.toFixed(2) + '</td>\r\n';
 
             //MOS
             var nmos = 0;
