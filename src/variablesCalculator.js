@@ -150,9 +150,17 @@ function calculateVariables(file) {
                     a = 2;
             } else if(Number(data[row]['C23a']) == 98 || Number(data[row]['C23a']) == 99)
                 a = 1;
-            var imc = Number(data[row]['I8']) / Number(data[row]['I5']);
+            else a = 0;
+            var imc;
+            if (Number(data[row]['I5']) != 0)
+                imc = Number(data[row]['I8']) / Number(data[row]['I5']);
+            else
+                imc = 0;
             var nman = Number(data[row]['C39']) + a + Number(data[row]['C40']) +
                 Number(data[row]['C41']) + Number(data[row]['C42']) + imc;
+
+            console.log("Teste " + nchave + " number: a - " + a + " imc - " + imc);
+
             text += nman.toFixed(2) + ",";
             html += '<td>' + nman.toFixed(2) + '</td>\r\n';
 

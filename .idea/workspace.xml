@@ -26,10 +26,10 @@
       <file leaf-file-name="variablesCalculator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/variablesCalculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.87096775">
-              <caret line="215" column="31" selection-start-line="215" selection-start-column="31" selection-end-line="215" selection-end-column="31" />
+            <state vertical-scroll-proportion="3.755981">
+              <caret line="157" column="24" selection-start-line="157" selection-start-column="24" selection-end-line="157" selection-end-column="24" />
               <folding>
-                <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+                <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -89,7 +89,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="717" />
+    <option name="height" value="724" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -388,15 +388,17 @@
       <workItem from="1444904541369" duration="482000" />
       <workItem from="1444908614114" duration="147000" />
       <workItem from="1444948974734" duration="139000" />
-      <workItem from="1445344830039" duration="217000" />
+      <workItem from="1445344830039" duration="1358000" />
+      <workItem from="1445646696970" duration="472000" />
+      <workItem from="1445678457820" duration="263000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37306000" />
+    <option name="totallyTimeSpent" value="39182000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="717" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="724" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -445,9 +447,9 @@
     <entry file="file://$PROJECT_DIR$/src/variablesCalculator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="157" column="24" selection-start-line="157" selection-start-column="24" selection-end-line="157" selection-end-column="24" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -468,7 +470,28 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/variablesCalculator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -489,7 +512,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="323" column="32" selection-start-line="323" selection-start-column="32" selection-end-line="323" selection-end-column="32" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -510,7 +533,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="323" column="32" selection-start-line="323" selection-start-column="32" selection-end-line="323" selection-end-column="32" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -531,7 +554,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="304" column="54" selection-start-line="304" selection-start-column="54" selection-end-line="304" selection-end-column="54" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -552,7 +575,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -573,7 +596,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -594,7 +617,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -615,7 +638,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="20" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="20" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -636,7 +659,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -657,7 +680,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="106" column="13" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -678,7 +701,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
           <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -701,6 +724,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/variablesCalculator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.755981">
+          <caret line="157" column="24" selection-start-line="157" selection-start-column="24" selection-end-line="157" selection-end-column="24" />
+          <folding>
+            <marker date="1445348735000" expanded="true" signature="1742:1759" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -708,16 +741,6 @@
           <folding>
             <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/variablesCalculator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.87096775">
-          <caret line="215" column="31" selection-start-line="215" selection-start-column="31" selection-end-line="215" selection-end-column="31" />
-          <folding>
-            <marker date="1444908656000" expanded="true" signature="1742:1759" placeholder="..." />
           </folding>
         </state>
       </provider>
