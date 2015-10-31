@@ -1,6 +1,6 @@
 var text = "";
 var header = "Chave,MEEM,Atividade Fisica Total,Tempo Sentado,GDS,FES,MAN,Fraqueza Muscular,LAWTON,KATZ,CAAVD,TUG,CAMINHADA," +
-    "MOS,Circunferencia 14,15,16,17,BERG,IDADE,RELOGIO,QUEDAS,FINDRISC,SCORED\n";
+    "MOS,Circunferencia 14,15,16,17,BERG,IDADE,RELOGIO,QUEDAS,FINDRISC,SCORED,Fragilidade\n";
 
 $(document).ready(function() {
     if(isAPIAvailable()) {
@@ -86,7 +86,7 @@ function calculateVariables(file) {
             '<td>Tempo Sentado</td>\r\n<td>GDS</td>\r\n<td>FES</td>\r\n<td>MAN</td>\r\n<td>Fraqueza Muscular</td>\r\n' +
             '<td>Lawton</td>\r\n<td>Katz</td>\r\n<td>CAAVD</td>\r\n<td>TUG</td>\r\n<td>Caminhada</td>\r\n<td>MOS</td>\r\n' +
             '<td>Circunferência - 14</td>\r\n<td>Circunferência - 15</td>\r\n<td>Circunferência - 16</td>\r\n<td>Circunferência - 17</td>\r\n' +
-            '<td>BERG</td>\r\n<td>Idade</td>\r\n<td>Relógio</td>\r\n<td>Quedas</td>\r\n<td>Findrisc</td>\r\n<td>Scored</td>';
+            '<td>BERG</td>\r\n<td>Idade</td>\r\n<td>Relógio</td>\r\n<td>Quedas</td>\r\n<td>Findrisc</td>\r\n<td>Scored</td>\r\n<td>Fragilidade</td>';
 
         for (var row in data) {
             html += '<tr>\r\n';
@@ -328,6 +328,34 @@ function calculateVariables(file) {
 
             text += nscored + "\n";
             html += '<td>' + nscored + '</td>\r\n';
+
+            //Fragilidade
+            var nfrag = 0;
+            var resultfrag;
+            if(Number(data[row]['C23a']) == 1) {
+                if (Number(data[row]['C23b']) >= 3)
+                    nfrag++;
+            }
+            if (Number(data[row]['C29']) == 1)
+                nfrag++;
+            if (Number(data[row]['I1']) == 0)
+                nfrag++;
+            if (Number(data[row]['I9']) == 0)
+                nfrag++;
+            if (Number(data[row]['C14p']) == 1 || Number(data[row]['C14p']) == 2 || Number(data[row]['C14p']) == 3)
+                nfrag++;
+            if (Number(data[row]['C14q']) == 1 || Number(data[row]['C14q']) == 2 || Number(data[row]['C14q']) == 3)
+                nfrag++;
+
+            if (nfrag == 0)
+                resultfrag = "Não frágil";
+            else if (nfrag == 1 || nfrag == 2)
+                resultfrag = "Pré-frágil";
+            else
+                resultfrag = "Frágil";
+
+            text += nfrag + "\n";
+            html += '<td>' + nfrag + '</td>\r\n';
 
             html += '</tr>\r\n';
 
