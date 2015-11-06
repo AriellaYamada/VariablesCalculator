@@ -326,7 +326,7 @@ function calculateVariables(file) {
             if (Number(data[row]['C7c']) != 98 && Number(data[row]['C7c']) != 99)
                 nscored++;
 
-            text += nscored + "\n";
+            text += nscored;
             html += '<td>' + nscored + '</td>\r\n';
 
             //Fragilidade
@@ -348,14 +348,14 @@ function calculateVariables(file) {
                 nfrag++;
 
             if (nfrag == 0)
-                resultfrag = "Não frágil";
+                resultfrag = "N";
             else if (nfrag == 1 || nfrag == 2)
-                resultfrag = "Pré-frágil";
+                resultfrag = "P";
             else
-                resultfrag = "Frágil";
+                resultfrag = "F";
 
-            text += nfrag + "\n";
-            html += '<td>' + nfrag + '</td>\r\n';
+            text += "," + resultfrag + "\n";
+            html += '<td>' + resultfrag + '</td>\r\n';
 
             html += '</tr>\r\n';
 
